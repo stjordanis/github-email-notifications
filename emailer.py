@@ -1,3 +1,5 @@
+from __future__ import unicode_literals
+
 import envelopes
 import envelopes.connstack
 from flask import Flask
@@ -197,8 +199,16 @@ def _get_subject(repo, message):
 
 def _valid_signature(gh_signature, body, secret):
     """Returns True if GitHub signature is valid. False, otherwise."""
-    if isinstance(gh_signature, unicode):
-        gh_signature = str(gh_signature)
+    def to_str(s):
+        if isinstance(s, unicode):
+            return str(s)
+        else:
+            return s
+
+    gh_signature = to_str(gh_signature)
+    body = to_str(body)
+    secret = to_str(secret)
+
     expected_hmac = hmac.new(secret, body, sha)
-    expected_signature = 'sha1=' + expected_hmac.hexdigest()
+    expected_signature = to_str('sha1=' + expected_hmac.hexdigest())
     return hmac.compare_digest(expected_signature, gh_signature)

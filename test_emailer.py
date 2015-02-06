@@ -1,3 +1,5 @@
+from __future__ import unicode_literals
+
 import hmac
 import json
 import mock
@@ -261,6 +263,19 @@ class EmailerTests(unittest.TestCase):
         actual_msg = mock_send.return_value.send.call_args[0][0]
         self.check_msg(actual_msg)
         self.assertEqual(None, actual_msg.headers.get('Approved'))
+
+    @mock.patch('envelopes.connstack.get_current_connection')
+    def test_send_email__unicode_body(self, mock_send):
+        """Verify unicode characters in msg_info are handled."""
+        msg_info = self.msg_info
+        msg_info['message'] += '\n\u2026'
+
+        self.prep_env()
+        emailer._send_email(msg_info)
+
+        mock_send.return_value.send.assert_called_once_with(mock.ANY)
+        actual_msg = mock_send.return_value.send.call_args[0][0]
+        self.check_msg(actual_msg)
 
     def test_get_sender__from_author(self):
         """Verify sent from author when appropriate config var set."""
