@@ -27,6 +27,9 @@ Create the app, enable papertrail to record logs, and set the configuration
 variables.
 
 ```bash
+# heroku login
+  # chapel_github@cray.com + password from Keeppass
+  # after the first time, the heroku login persists somewhere for a while
 heroku create [<app_name>]
 heroku addons:add papertrail
 heroku config:set GITHUB_COMMIT_EMAILER_SEND_FROM_AUTHOR=<true>
@@ -101,12 +104,13 @@ Development
 -----------
 
 To develop and test locally, install the [Heroku Toolbelt][0], python
-dependencies, create a `.env` file, and use `foreman start` to run the app.
+dependencies, create a `.env` file, and use `heroku local:start` to run the app.
 
 * Install python dependencies (assuming virtualenvwrapper is available):
 
 ```bash
 mkvirtualenv github-email-notifications
+# if not found, source virtualenvwrapper.sh and retry
 pip install -r requirements.txt
 ```
 
@@ -124,13 +128,16 @@ SENDGRID_USERNAME=<sendgrid_user>
 To use the same values configured in heroku:
 
 ```bash
+# heroku login
+  # chapel_github@cray.com + password from Keeppass
+  # after the first time, the heroku login persists somewhere for a while
 heroku config --shell > .env
 ```
 
 * Run the app, which opens at `http://localhost:5000`:
 
 ```bash
-foreman start
+heroku local:start
 ```
 
 * Send a test request:
@@ -151,9 +158,12 @@ curl -vs -X POST \
       "removed": ["removed.it"],
       "modified": ["stuff", "was", "done"]},
     "pusher": {
-      "name": "thomasvandoren",
+      "name": "awallace",
       "email": "testing@github-email-notification.info"}}'
 ```
+
+Note: the above test will not actually send an email, because
+```WARNING:root:Invalid signature, skipping request```
 
 * Install test dependencies and run the unittests.
 
