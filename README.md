@@ -174,4 +174,9 @@ tox -e flake8
 tox -e coverage
 ```
 
+Update: 2017-10-03
+------------------
+
+Changed GITHUB_COMMIT_EMAILER_RECIPIENT to 'chapel-commits@lists.sourceforge.net,chapel_commits@cray.com'
+
 [0]: https://toolbelt.heroku.com/
