@@ -129,6 +129,7 @@ def _send_email(msg_info):
         logging.error('sender and recipient config vars must be set.')
         raise ValueError('sender and recipient config vars must be set.')
 
+    recipient_cc = os.environ.get('GITHUB_COMMIT_EMAILER_RECIPIENT_CC', None)
     reply_to = os.environ.get('GITHUB_COMMIT_EMAILER_REPLY_TO', None)
     approved = os.environ.get('GITHUB_COMMIT_EMAILER_APPROVED_HEADER', None)
     subject = _get_subject(msg_info['repo'], msg_info['message'])
@@ -152,7 +153,8 @@ Compare: {compare_url}
         to_addr=recipient,
         from_addr=sender,
         subject=subject,
-        text_body=body
+        text_body=body,
+        cc_addr=recipient_cc,
     )
 
     if reply_to is not None:
