@@ -129,7 +129,7 @@ def _send_email(msg_info):
         logging.error('sender and recipient config vars must be set.')
         raise ValueError('sender and recipient config vars must be set.')
 
-    recipient_ccs = os.environ.get('GITHUB_COMMIT_EMAILER_RECIPIENT_CC', None) 
+    recipient_ccs = os.environ.get('GITHUB_COMMIT_EMAILER_RECIPIENT_CC', None)
     recipient_cc = recipient_ccs.split(",")
     reply_to = os.environ.get('GITHUB_COMMIT_EMAILER_REPLY_TO', None)
     approved = os.environ.get('GITHUB_COMMIT_EMAILER_APPROVED_HEADER', None)
