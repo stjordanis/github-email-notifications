@@ -130,7 +130,10 @@ def _send_email(msg_info):
         raise ValueError('sender and recipient config vars must be set.')
 
     recipient_ccs = os.environ.get('GITHUB_COMMIT_EMAILER_RECIPIENT_CC', None)
-    recipient_cc = recipient_ccs.split(",")
+    if recipient_ccs is not None:
+        recipient_cc = recipient_ccs.split(",")
+    else:
+        recipient_cc = None
     reply_to = os.environ.get('GITHUB_COMMIT_EMAILER_REPLY_TO', None)
     approved = os.environ.get('GITHUB_COMMIT_EMAILER_APPROVED_HEADER', None)
     subject = _get_subject(msg_info['repo'], msg_info['message'])
