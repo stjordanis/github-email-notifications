@@ -143,11 +143,11 @@ Revision: {revision}
 Author: {pusher}
 
 Log Message:
-------------
+––––––––––––
 {message}
 
 Modified Files:
----------------
+–––––––––––––––
 {changed_files}
 
 Compare: {compare_url}
