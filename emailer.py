@@ -141,13 +141,11 @@ def _send_email(msg_info):
     body = """Branch: {branch}
 Revision: {revision}
 Author: {pusher}
-
 Log Message:
-––––––––––––
+
 {message}
 
 Modified Files:
-–––––––––––––––
 {changed_files}
 
 Compare: {compare_url}
