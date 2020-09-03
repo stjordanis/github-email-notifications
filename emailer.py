@@ -197,7 +197,7 @@ def _get_subject(repo, message):
     else:
         subject_msg = message_lines[0]
     subject_msg = subject_msg[:50]
-    subject = '[{0}] {1}'.format(repo, subject_msg)
+    subject = '[Chapel Merge] {0}'.format(subject_msg)
     return subject
 
 
