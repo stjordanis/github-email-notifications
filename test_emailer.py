@@ -212,7 +212,7 @@ class EmailerTests(unittest.TestCase):
         self.assertEqual(
             self.send_grid_header, actual_msg.headers.get('X-SMTPAPI'))
         self.assertEqual(
-            '[TESTING/test] TEST commit message.', actual_msg._subject)
+            '[Chapel Merge] TEST commit message.', actual_msg._subject)
 
     @mock.patch('envelopes.connstack.get_current_connection')
     def test_send_email__no_reply_to(self, mock_send):
@@ -297,7 +297,7 @@ class EmailerTests(unittest.TestCase):
         """Verify get_subject returns first line of commit message and
         repo name.
         """
-        expected = '[TEST/it] this is a message'
+        expected = '[Chapel Merge] this is a message'
         actual = emailer._get_subject('TEST/it', 'this is a message')
         self.assertEqual(expected, actual)
 
@@ -315,7 +315,7 @@ class EmailerTests(unittest.TestCase):
         msg = ('merge pull request #blah\n\n'
                'my real message\n\n'
                'with lots of info\n')
-        expected = '[TEST/it] my real message'
+        expected = '[Chapel Merge] my real message'
         actual = emailer._get_subject('TEST/it', msg)
         self.assertEqual(expected, actual)
 
