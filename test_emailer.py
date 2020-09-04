@@ -306,7 +306,7 @@ class EmailerTests(unittest.TestCase):
         repo = 'TEST/realllllllllllllllyyyyyyyyyyy-loooooooooooooong'
         msg = 'this is really long {0}'.format('.' * 100)
         assert len(msg) > 50
-        expected = '[{0}] {1}'.format(repo, msg[:50])
+        expected = '[Chapel Merge] {0}'.format(msg[:50])
         actual = emailer._get_subject(repo, msg)
         self.assertEqual(expected, actual)
 
