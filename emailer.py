@@ -153,7 +153,6 @@ def _send_email(msg_info):
 Subject: Hi Mailtrap
 To: {receiver}
 From: {sender}
-
 This is my first message with Python."""
 
     try:
