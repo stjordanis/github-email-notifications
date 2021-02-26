@@ -147,7 +147,7 @@ def _send_email(msg_info):
 
     receiver = "joseph.tursi@hpe.com"
     
-    message = f"""\
+    messageToSend = f"""\
 Subject: Hi Mailtrap
 To: {receiver}
 From: {sender}
@@ -157,7 +157,7 @@ This is my first message with Python."""
     try:
         with smtplib.SMTP(smtp_server, port) as server:
             server.login(login, password)
-            server.sendmail(sender, receiver, message)
+            server.sendmail(sender, receiver, messageToSend)
         print('Sent')
     except (gaierror, ConnectionRefusedError):
         print('Failed to connect to the server. Bad connection settings?')
