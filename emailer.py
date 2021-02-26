@@ -149,12 +149,12 @@ def _send_email(msg_info):
     receiver = "joseph.tursi@hpe.com"
     
     # type your message: use two newlines (\n) to separate the subject from the message body, and use 'f' to  automatically insert variables in the text
-    message = f"""\
+    message = """\
     Subject: Hi Mailtrap
     To: {receiver}
     From: {sender}
     
-    This is my first message with Python."""
+    This is my first message with Python.""".format(receiver,sender)
 
     try:
         #send your message with credentials specified above
