@@ -155,9 +155,9 @@ def _send_email(msg_info):
     
     This is my first message with Python.""".format(toField=receiver,fromField=sender)
     #send your message with credentials specified above
-    with smtplib.SMTP(smtp_server, port) as server:
-        server.login(login, password)
-        server.sendmail(sender, receiver, message)
+    server = smtplib.SMTP(smtp_server, port)
+    server.login(login, password)
+    server.sendmail(sender, receiver, message)
 
 
 def _get_sender(pusher_email):
