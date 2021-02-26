@@ -125,7 +125,7 @@ def _get_secret():
 def _send_email(msg_info):
     """Create and send commit notification email."""
     sender = _get_sender(msg_info['pusher_email'])
-    #recipient = os.environ.get('GITHUB_COMMIT_EMAILER_RECIPIENT')
+    recipient = os.environ.get('GITHUB_COMMIT_EMAILER_RECIPIENT')
 
     if sender is None or recipient is None:
         logging.error('sender and recipient config vars must be set.')
