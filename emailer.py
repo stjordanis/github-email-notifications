@@ -13,7 +13,6 @@ import rollbar
 import rollbar.contrib.flask
 import sha
 import smtplib
-from socket import gaierror
 
 app = Flask(__name__)
 
@@ -155,21 +154,10 @@ def _send_email(msg_info):
     From: {fromField}
     
     This is my first message with Python.""".format(toField=receiver,fromField=sender)
-
-    try:
-        #send your message with credentials specified above
-        with smtplib.SMTP(smtp_server, port) as server:
-            server.login(login, password)
-            server.sendmail(sender, receiver, message)
-
-        # tell the script to report if your message was sent or which errors need to be fixed 
-        print('Sent')
-    except (gaierror, ConnectionRefusedError):
-        print('Failed to connect to the server. Bad connection settings?')
-    except smtplib.SMTPServerDisconnected:
-        print('Failed to connect to the server. Wrong user/password?')
-    except smtplib.SMTPException as e:
-        print('SMTP error occurred: ' + str(e))
+    #send your message with credentials specified above
+    with smtplib.SMTP(smtp_server, port) as server:
+        server.login(login, password)
+        server.sendmail(sender, receiver, message)
 
 
 def _get_sender(pusher_email):
