@@ -12,7 +12,7 @@ import os.path
 import rollbar
 import rollbar.contrib.flask
 import sha
-import smptlib
+import smtplib
 from socket import gaierror
 
 app = Flask(__name__)
