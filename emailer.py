@@ -147,7 +147,7 @@ def _send_email(msg_info):
 
     receiver = "joseph.tursi@hpe.com"
     
-    messageToSend = f"""\
+    messageToSend = f"""
 Subject: Hi Mailtrap
 To: {receiver}
 From: {sender}
