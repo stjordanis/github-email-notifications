@@ -147,12 +147,12 @@ def _send_email(msg_info):
 
     receiver = "joseph.tursi@hpe.com"
     
-    messageToSend = f"""
-Subject: Hi Mailtrap
-To: {receiver}
-From: {sender}
-
-This is my first message with Python."""
+    messageToSend = f"""\
+                     Subject: Hi Mailtrap
+                     To: {receiver}
+                     From: {sender}
+                     
+                     This is my first message with Python."""
 
     try:
         with smtplib.SMTP(smtp_server, port) as server:
